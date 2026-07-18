@@ -40,9 +40,9 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/opt/airflow/config/bq-key.json"
 
 @dag(
     dag_id="lte_kpi_pipeline",
-    schedule=None,  # manual trigger for now
+    schedule="@daily",  # runs once every 24 hours
     start_date=datetime(2026, 1, 1),
-    catchup=False,
+    catchup=False,  # don't backfill runs for past dates when first enabled
     tags=["portfolio", "bigquery", "lte"],
 )
 def lte_kpi_pipeline():
